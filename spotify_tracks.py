@@ -57,6 +57,7 @@ def printTracks(list):
 
 	f = open("tracks.txt", "w+")
 	for track in tracks:
+		# tracks is a dictionary containing track names as keys and track author as a value
 		f.write(tracks[track] + "  -  " + track+ "\r\n")
 	f.close()
 
@@ -68,9 +69,6 @@ body_param = {'grant_type':'client_credentials'}
 heads = {'Authorization':'Basic OGY3NzE4ODg1ZDJhNDEzMDgwMjQwYTRjZmUzMWQ0ZDQ6OTBhNWZlNmE3MWZlNDRjMjhjYTVmNWY1YzM1ZjY4OTI='}
 
 r = requests.post("https://accounts.spotify.com/api/token", data = body_param, headers = heads)
-
-# print(r.text)
-# print(r.status_code)
 
 token = r.json()['access_token']
 
