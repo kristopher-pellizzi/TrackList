@@ -2,6 +2,7 @@ import requests
 import threading
 import time
 import sys
+import os
 
 class PlaylistGetter:
 	def __init__(self, token):
@@ -16,7 +17,11 @@ class PlaylistGetter:
 		playlists = []
 		while True:
 			jsonResponse = r.json()
-			nextReq = jsonResponse['next']
+			try:
+				nextReq = jsonResponse['next']
+			except:
+				print("Sorry, user not found")
+				os._exit(-1)
 			temp = jsonResponse['items']
 			playlists.extend(map(lambda x: x['id'], temp))
 			if nextReq is None:
